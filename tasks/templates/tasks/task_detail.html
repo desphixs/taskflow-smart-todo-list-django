@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,21 +26,27 @@
         }
     </script>
 </head>
+
 <body class="bg-orange-50/30 font-sans text-slate-800 min-h-screen py-16 px-6 flex justify-center items-center">
     <div class="max-w-xl w-full">
         <!-- Main dynamic detail card container with soft glassmorphism shadows -->
-        <div class="bg-white rounded-3xl p-8 shadow-xl shadow-orange-100/50 border border-slate-100/80 relative overflow-hidden">
+        <div
+            class="bg-white rounded-3xl p-8 shadow-xl shadow-orange-100/50 border border-slate-100/80 relative overflow-hidden">
             <!-- Top glowing gradient accent header strip -->
-            <div class="absolute left-0 right-0 top-0 h-[6px] bg-gradient-to-r {% if task.is_completed %}from-orange-400 to-amber-500{% else %}from-amber-400 to-orange-400{% endif %}"></div>
-            
+            <div
+                class="absolute left-0 right-0 top-0 h-[6px] bg-gradient-to-r {% if task.is_completed %}from-orange-400 to-amber-500{% else %}from-amber-400 to-orange-400{% endif %}">
+            </div>
+
             <!-- Detail Page Header Icon representing state -->
             <div class="flex justify-center mb-6">
                 {% if task.is_completed %}
-                <div class="w-16 h-16 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center text-2xl shadow-sm shadow-orange-100 animate-bounce">
+                <div
+                    class="w-16 h-16 bg-orange-100 text-orange-600 rounded-2xl flex items-center justify-center text-2xl shadow-sm shadow-orange-100 animate-bounce">
                     <i class="fa-solid fa-circle-check"></i>
                 </div>
                 {% else %}
-                <div class="w-16 h-16 bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center text-2xl shadow-sm shadow-amber-100">
+                <div
+                    class="w-16 h-16 bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center text-2xl shadow-sm shadow-amber-100">
                     <i class="fa-regular fa-clock"></i>
                 </div>
                 {% endif %}
@@ -47,11 +54,12 @@
 
             <!-- Task Main Contents -->
             <div class="text-center mb-8">
-                <span class="text-xs uppercase font-semibold tracking-wider text-slate-400">Task Document #{{ task.id }}</span>
+                <span class="text-xs uppercase font-semibold tracking-wider text-slate-400">Task Document #{{ task.id
+                    }}</span>
                 <h1 class="text-2xl font-bold text-slate-800 mt-2 mb-4 leading-normal px-4">
                     {{ task.title }}
                 </h1>
-                
+
                 <!-- Separator line -->
                 <div class="w-12 h-[2px] bg-orange-100 mx-auto my-4 rounded-full"></div>
             </div>
@@ -62,12 +70,14 @@
                 <div class="flex flex-col items-center justify-center p-3 text-center">
                     <span class="text-xs text-slate-400 font-light mb-1">Status State</span>
                     {% if task.is_completed %}
-                    <span class="bg-orange-100 text-orange-700 text-xs font-semibold px-4 py-1.5 rounded-full inline-flex items-center space-x-1.5 shadow-sm">
+                    <span
+                        class="bg-orange-100 text-orange-700 text-xs font-semibold px-4 py-1.5 rounded-full inline-flex items-center space-x-1.5 shadow-sm">
                         <i class="fa-solid fa-circle-check"></i>
                         <span>Completed</span>
                     </span>
                     {% else %}
-                    <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-4 py-1.5 rounded-full inline-flex items-center space-x-1.5 shadow-sm">
+                    <span
+                        class="bg-amber-100 text-amber-800 text-xs font-semibold px-4 py-1.5 rounded-full inline-flex items-center space-x-1.5 shadow-sm">
                         <i class="fa-regular fa-clock"></i>
                         <span>Pending</span>
                     </span>
@@ -87,7 +97,8 @@
 
             <!-- Action buttons dashboard toolbar -->
             <div class="flex justify-center">
-                <a href="{% url 'tasks:task_list' %}" class="inline-flex items-center space-x-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-6 py-3 rounded-2xl shadow-md shadow-orange-100 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 text-sm">
+                <a href="{% url 'tasks:task_list' %}"
+                    class="inline-flex items-center space-x-2 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-6 py-3 rounded-2xl shadow-md shadow-orange-100 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 text-sm">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>Back to Board</span>
                 </a>
@@ -95,4 +106,5 @@
         </div>
     </div>
 </body>
+
 </html>

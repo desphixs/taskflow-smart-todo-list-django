@@ -23,4 +23,9 @@ urlpatterns = [
     # stores it under the variable name 'pk' (Primary Key), and hands it over to our 'task_detail' view function!
     # We assign name='task_detail' to easily link task titles straight to their pages using {% url 'tasks:task_detail' task.id %}.
     path('<int:pk>/', views.task_detail, name='task_detail'),
+
+    # This route maps to our secure task creation view function.
+    # When our HTML index page submits form details via POST, it sends the parameters to /create/!
+    # The view processes the details and redirects the user right back to the homepage list.
+    path('create/', views.create_task, name='create_task'),
 ]

@@ -1,8 +1,8 @@
-# We import get_object_or_404 alongside render to securely retrieve database objects.
-# Think of get_object_or_404 like a friendly archivist butler: when we ask him to pull a document with ID 5,
-# if it exists, he grabs it cleanly. If it's missing, he turns around and politely says "404: Not Found",
-# preventing our Python server from crashing due to a missing folder!
-from django.shortcuts import render, get_object_or_404
+# We import render, get_object_or_404, and redirect to handle template compilation, safe object lookups, and routing.
+# Think of redirect like an "Airport Transfer Chauffeur Portal": once a customer finishes a specific step,
+# the chauffeur securely picks them up, guides them out of the current page terminal, and drops them off
+# at another active page gate (e.g. the home dashboard list) seamlessly!
+from django.shortcuts import render, get_object_or_404, redirect
 # We import HttpResponse to demonstrate how to send a raw text/HTML response directly back to the browser.
 # In professional web apps, returning raw text or writing full HTML inside Python strings is incredibly messy!
 # That is why we quickly graduate to using the 'render' function, which loads a separate, clean HTML template.
@@ -58,3 +58,26 @@ def task_detail(request, pk):
 
     # We render and deliver the loaded task detail template back to the browser screen.
     return render(request, 'tasks/task_detail.html', context)
+
+
+# Our create_task view handles processing submitted task inputs and saving them directly into our SQLite database.
+# Think of this view like a secure database registrar: when a student fills out a registration form,
+# the registrar inspects the document, logs it cleanly inside the master register cabinet,
+# and then immediately guides them back to the active list view dashboard!
+def create_task(request):
+    # We check if the incoming request type is 'POST' (which means someone submitted form input data).
+    # Think of a POST request like sending a locked secure mail courier package back to the office kitchen!
+    if request.method == 'POST':
+        # We extract the string value typed inside the form field labeled exactly name='title'.
+        # Think of this like pulling the typed letter out of the secure mail envelope!
+        title = request.POST.get('title')
+        
+        # We confirm that the user actually typed some characters to prevent registering blank tasks!
+        if title:
+            # We use our ORM model manager 'objects.create' to save this task straight into a new SQLite database row!
+            # Think of this like registering a brand new folder containing the given title inside our Tasks drawer!
+            Task.objects.create(title=title)
+            
+    # Once the task is saved (or if the request is not a POST), we call the redirect function.
+    # This guides the visitor back to our main home dashboard list view route, updating the board in real-time!
+    return redirect('tasks:task_list')
