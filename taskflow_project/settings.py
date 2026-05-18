@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-s#kz^u+i%duhwgc8dn!e_)+mak@ld&tg1o_taldds9qp)j*n@r'
+SECRET_KEY = 'django-insecure-*i6gat$nuq&qhj@$_)iyldth%*5^v#-sf21y%n#*1$z#83#e5h'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,23 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # -------------------------------------------------------------------------
-    # REGISTERING OUR CUSTOM APP: 'tasks'
-    # -------------------------------------------------------------------------
-    # Think of Django as a gigantic cruise ship. The cruise ship comes pre-built 
-    # with general utilities like security systems, cafeteria logs, and staff 
-    # registries (these are the built-in apps like 'django.contrib.admin' above). 
-    #
-    # However, you just built a brand new recreational gaming lounge (our 'tasks' app)
-    # and placed it on the ship. If you do not officially register your gaming lounge 
-    # in the cruise ship's central deck plan directory, the captain and the passengers 
-    # will never know it exists, and no one will be able to visit it!
-    #
-    # By adding the string 'tasks' to this list, we are telling Django's central 
-    # settings: "Hey Django, please look inside the 'tasks' folder we created, load 
-    # its models, read its configurations, and make it part of our web application."
-    # -------------------------------------------------------------------------
-    'tasks',
 ]
 
 MIDDLEWARE = [
