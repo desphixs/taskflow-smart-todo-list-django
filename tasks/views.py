@@ -9,11 +9,37 @@ from django.http import HttpResponse
 # Think of a view function like a friendly restaurant chef: when a customer submits an order (a web request),
 # the chef prepares the meal (processes the request) and sends the finished plate back (the response)!
 def task_list(request):
-    # Below is how we would return a simple raw string using HttpResponse:
-    # return HttpResponse("Welcome to TaskFlow! Your task-tracking journey starts here.")
-    #
-    # However, to keep our codebase professional and easy to style, we will render our separate HTML template.
-    # The 'render' function tells Django: "Go find the HTML file named 'tasks/index.html' inside the templates folder,
-    # package it up, and deliver it as a completed web response to the user's screen!"
-    # The first argument is the incoming request object, and the second is our template path.
-    return render(request, 'tasks/index.html')
+    # In a fully-fledged database application, we would retrieve tasks out of physical database tables.
+    # For now, we define a list of standard Python dictionaries representing our tasks.
+    # Think of this list like a physical clipboard list of paper sheets: each sheet (dictionary) has a
+    # task name ('title'), a marker checkmark ('completed') indicating if it's done or pending,
+    # and a label ('created_at') telling us when the task was added.
+    tasks = [
+        {
+            'title': 'Set up virtual environment and Django project',
+            'completed': True,
+            'created_at': 'just now'
+        },
+        {
+            'title': 'Build the tasks board view and templates',
+            'completed': False,
+            'created_at': 'today'
+        },
+        {
+            'title': 'Design sticky note task grid mockup',
+            'completed': True,
+            'created_at': 'yesterday'
+        },
+    ]
+
+    # We pack our list inside a central Python dictionary called 'context'.
+    # Think of the context dictionary like a server carrying a covered tray of dishes to a dining table:
+    # the tray (context) holds specific labels ('tasks') so the template knows exactly how to identify
+    # the correct dish once the cover is lifted!
+    context = {
+        'tasks': tasks,
+    }
+
+    # The 'render' function takes the context dictionary as its third argument.
+    # This delivers our packed data straight to the templates/tasks/index.html file so it can be dynamically compiled!
+    return render(request, 'tasks/index.html', context)
