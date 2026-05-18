@@ -28,8 +28,10 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
-
+# The INSTALLED_APPS list registers all active modules/apps within this Django project.
+# Think of this list like the shopping mall's official store roster: if our 'tasks' store
+# is not written on the manager's master roster, the mall engine won't activate it
+# or let any visitors access its views, URLs, or templates!
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # We register our newly created 'tasks' app here to let Django know it exists and should be loaded.
+    'tasks',
 ]
 
 MIDDLEWARE = [
