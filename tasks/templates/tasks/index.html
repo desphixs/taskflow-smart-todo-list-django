@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,15 +26,18 @@
         }
     </script>
 </head>
+
 <body class="bg-orange-50/30 font-sans text-slate-800 min-h-screen py-16 px-6 flex justify-center">
     <div class="max-w-2xl w-full">
         <!-- Main header for our TaskFlow workspace rocking warm orange vibes -->
         <header class="text-center mb-12">
-            <div class="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-orange-400 to-amber-500 rounded-2xl shadow-md shadow-orange-200 mb-4">
+            <div
+                class="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-orange-400 to-amber-500 rounded-2xl shadow-md shadow-orange-200 mb-4">
                 <!-- Premium Font Awesome List-Check Icon replacing previous inline SVGs -->
                 <i class="fa-solid fa-list-check text-2xl text-white"></i>
             </div>
-            <h1 class="text-4xl font-bold mb-2 tracking-tight bg-gradient-to-r from-orange-500 to-amber-600 bg-clip-text text-transparent">
+            <h1
+                class="text-4xl font-bold mb-2 tracking-tight bg-gradient-to-r from-orange-500 to-amber-600 bg-clip-text text-transparent">
                 TaskFlow
             </h1>
             <p class="text-slate-500 text-base font-light">
@@ -45,37 +49,47 @@
         <div class="space-y-4">
             {% for task in tasks %}
             <!-- Single dynamic task card -->
-            <div class="group bg-white rounded-2xl p-5 shadow-sm border border-slate-100/80 hover:shadow-md hover:border-orange-100 transition-all duration-300 flex items-center justify-between relative overflow-hidden">
+            <div
+                class="group bg-white rounded-2xl p-5 shadow-sm border border-slate-100/80 hover:shadow-md hover:border-orange-100 transition-all duration-300 flex items-center justify-between relative overflow-hidden">
                 <!-- Left accent border stripe -->
-                <div class="absolute left-0 top-0 bottom-0 w-[4px] bg-gradient-to-b {% if task.is_completed %}from-orange-400 to-amber-500{% else %}from-amber-400 to-orange-400{% endif %}"></div>
-                
+                <div
+                    class="absolute left-0 top-0 bottom-0 w-[4px] bg-gradient-to-b {% if task.is_completed %}from-orange-400 to-amber-500{% else %}from-amber-400 to-orange-400{% endif %}">
+                </div>
+
                 <div class="flex items-center space-x-4 pl-2">
                     <!-- Font Awesome status checkbox circle -->
                     {% if task.is_completed %}
-                    <div class="w-6 h-6 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center text-xs shadow-sm">
+                    <div
+                        class="w-6 h-6 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center text-xs shadow-sm">
                         <!-- Font Awesome solid check checkmark -->
                         <i class="fa-solid fa-check"></i>
                     </div>
                     {% else %}
-                    <div class="w-6 h-6 border-2 border-orange-200 text-orange-600 rounded-full flex items-center justify-center text-xs">
+                    <div
+                        class="w-6 h-6 border-2 border-orange-200 text-orange-600 rounded-full flex items-center justify-center text-xs">
                         <!-- Left blank for unchecked pending items -->
                     </div>
                     {% endif %}
                     <div>
-                        <h3 class="font-semibold text-slate-800 leading-snug {% if task.is_completed %}line-through text-slate-400{% else %}group-hover:text-orange-600 transition-colors duration-200{% endif %}">
-                            {{ task.title }}
+                        <h3
+                            class="font-semibold text-slate-800 leading-snug {% if task.is_completed %}line-through text-slate-400{% else %}group-hover:text-orange-600 transition-colors duration-200{% endif %}">
+                            <a href="{% url 'tasks:task_detail' task.id %}" class="hover:underline">
+                                {{ task.title }}
+                            </a>
                         </h3>
                         <p class="text-xs text-slate-400 mt-0.5">Created {{ task.created_at }}</p>
                     </div>
                 </div>
-                
+
                 {% if task.is_completed %}
-                <span class="bg-orange-50 text-orange-600 border border-orange-100 text-xs font-semibold px-3 py-1 rounded-full flex items-center space-x-1.5">
+                <span
+                    class="bg-orange-50 text-orange-600 border border-orange-100 text-xs font-semibold px-3 py-1 rounded-full flex items-center space-x-1.5">
                     <i class="fa-solid fa-circle-check text-orange-500 text-[10px]"></i>
                     <span>Completed</span>
                 </span>
                 {% else %}
-                <span class="bg-amber-50 text-amber-700 border border-amber-100 text-xs font-semibold px-3 py-1 rounded-full flex items-center space-x-1.5">
+                <span
+                    class="bg-amber-50 text-amber-700 border border-amber-100 text-xs font-semibold px-3 py-1 rounded-full flex items-center space-x-1.5">
                     <i class="fa-regular fa-clock text-amber-500 text-[10px]"></i>
                     <span>Pending</span>
                 </span>
@@ -83,7 +97,8 @@
             </div>
             {% empty %}
             <!-- Beautiful fallback empty state when no tasks are passed in the context roster -->
-            <div class="text-center py-12 bg-white rounded-2xl border border-slate-100/80 shadow-sm flex flex-col items-center justify-center">
+            <div
+                class="text-center py-12 bg-white rounded-2xl border border-slate-100/80 shadow-sm flex flex-col items-center justify-center">
                 <!-- Soft orange folder-open icon -->
                 <i class="fa-regular fa-folder-open text-4xl text-orange-300 mb-3"></i>
                 <p class="text-slate-400 font-light">No tasks on your board yet! Add some tasks to get started.</p>
@@ -92,4 +107,5 @@
         </div>
     </div>
 </body>
+
 </html>

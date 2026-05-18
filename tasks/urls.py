@@ -15,4 +15,12 @@ urlpatterns = [
     # When a visitor lands here, Django will call the 'task_list' view function (our chef) in views.py!
     # We assign name='task_list' so we can easily generate dynamic URL links in our templates later.
     path('', views.task_list, name='task_list'),
+
+    # This dynamic path '<int:pk>/' maps requests to an individual task's details page.
+    # Think of '<int:pk>' like a "Dynamic Postbox Number Selector".
+    # Instead of making 100 separate static URL links for 100 tasks, we write a single dynamic stencil route!
+    # Django matches any integer entered in this position (e.g. /tasks/5/), extracts that number,
+    # stores it under the variable name 'pk' (Primary Key), and hands it over to our 'task_detail' view function!
+    # We assign name='task_detail' to easily link task titles straight to their pages using {% url 'tasks:task_detail' task.id %}.
+    path('<int:pk>/', views.task_detail, name='task_detail'),
 ]
