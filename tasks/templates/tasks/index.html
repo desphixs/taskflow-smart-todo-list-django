@@ -74,19 +74,14 @@
                 </div>
 
                 <div class="flex items-center space-x-4 pl-2">
-                    <!-- Font Awesome status checkbox circle -->
-                    {% if task.is_completed %}
-                    <div
-                        class="w-6 h-6 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center text-xs shadow-sm">
-                        <!-- Font Awesome solid check checkmark -->
-                        <i class="fa-solid fa-check"></i>
-                    </div>
-                    {% else %}
-                    <div
-                        class="w-6 h-6 border-2 border-orange-200 text-orange-600 rounded-full flex items-center justify-center text-xs">
-                        <!-- Left blank for unchecked pending items -->
-                    </div>
-                    {% endif %}
+                    <!-- Task status toggler checkbox form -->
+                    <form method="POST" action="{% url 'tasks:toggle_task' task.id %}" class="flex items-center">
+                        {% csrf_token %}
+                        <!-- Standard checkbox that submits the parent form instantly when clicked -->
+                        <input type="checkbox" {% if task.is_completed %}checked{% endif %} 
+                            onchange="this.form.submit()"
+                            class="w-5 h-5 text-orange-500 border-slate-300 rounded-md focus:ring-orange-400 cursor-pointer accent-orange-500 hover:scale-110 transition-transform duration-200">
+                    </form>
                     <div>
                         <h3
                             class="font-semibold text-slate-800 leading-snug {% if task.is_completed %}line-through text-slate-400{% else %}group-hover:text-orange-600 transition-colors duration-200{% endif %}">

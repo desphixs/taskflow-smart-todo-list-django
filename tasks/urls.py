@@ -28,4 +28,8 @@ urlpatterns = [
     # When our HTML index page submits form details via POST, it sends the parameters to /create/!
     # The view processes the details and redirects the user right back to the homepage list.
     path('create/', views.create_task, name='create_task'),
+
+    # This dynamic route handles toggling completion states back and forth.
+    # When a user clicks our form checkbox, it triggers a POST call to /<id>/toggle/, flipping state!
+    path('<int:pk>/toggle/', views.toggle_task, name='toggle_task'),
 ]

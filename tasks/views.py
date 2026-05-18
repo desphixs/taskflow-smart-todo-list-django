@@ -81,3 +81,27 @@ def create_task(request):
     # Once the task is saved (or if the request is not a POST), we call the redirect function.
     # This guides the visitor back to our main home dashboard list view route, updating the board in real-time!
     return redirect('tasks:task_list')
+
+
+# Our toggle_task view handles changing a task's completion status back and forth.
+# Think of this view like a standard on/off light switch: when you trigger it,
+# it flips the status of our 'is_completed' database field from True to False (or vice versa),
+# saves the updated state inside SQLite, and chauffeur-redirects you right back to our list!
+def toggle_task(request, pk):
+    # We retrieve the specific task by primary key, or show a clean 404 page if missing.
+    # Think of this like having our smart document archivist retrieve task folder 5!
+    task = get_object_or_404(Task, pk=pk)
+    
+    # We only flip the switch if the request is a POST request (submitted securely).
+    # Think of this like a secure electronic switch box that only opens for direct secure submissions!
+    if request.method == 'POST':
+        # We invert the boolean completion state (if it was True, it becomes False; if it was False, it becomes True!)
+        # Think of this like flipping a toggle light switch on your bedroom wall!
+        task.is_completed = not task.is_completed
+        
+        # We call save() to persist this state change directly inside our database table.
+        # This saves the folder's new configuration securely inside the SQLite drawer!
+        task.save()
+        
+    # We redirect the guest back to our home dashboard list view refreshed!
+    return redirect('tasks:task_list')
