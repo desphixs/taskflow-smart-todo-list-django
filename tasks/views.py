@@ -105,3 +105,23 @@ def toggle_task(request, pk):
         
     # We redirect the guest back to our home dashboard list view refreshed!
     return redirect('tasks:task_list')
+
+
+# Our delete_task view handles deleting a task record permanently from SQLite.
+# Think of this view like a secure paper shredder: when a user clicks the delete button,
+# we retrieve the specific record, shred it completely out of existence using the ORM delete() method,
+# and then chauffeur-redirect the user back to our home board.
+def delete_task(request, pk):
+    # We retrieve the specific task by primary key, or show a clean 404 page if missing.
+    # Think of this like pulling the folder from the filing cabinet drawer!
+    task = get_object_or_404(Task, pk=pk)
+    
+    # We only shred the folder if the request is a POST request (submitted securely).
+    # Think of this like a secure confirmation gate that only activates for direct secure submissions!
+    if request.method == 'POST':
+        # We call the delete() method on the model instance.
+        # This completely wipes the database row from our SQLite table!
+        task.delete()
+        
+    # We redirect the guest back to our home dashboard list view refreshed!
+    return redirect('tasks:task_list')

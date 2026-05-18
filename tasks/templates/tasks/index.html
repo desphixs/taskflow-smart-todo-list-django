@@ -93,19 +93,14 @@
                     </div>
                 </div>
 
-                {% if task.is_completed %}
-                <span
-                    class="bg-orange-50 text-orange-600 border border-orange-100 text-xs font-semibold px-3 py-1 rounded-full flex items-center space-x-1.5">
-                    <i class="fa-solid fa-circle-check text-orange-500 text-[10px]"></i>
-                    <span>Completed</span>
-                </span>
-                {% else %}
-                <span
-                    class="bg-amber-50 text-amber-700 border border-amber-100 text-xs font-semibold px-3 py-1 rounded-full flex items-center space-x-1.5">
-                    <i class="fa-regular fa-clock text-amber-500 text-[10px]"></i>
-                    <span>Pending</span>
-                </span>
-                {% endif %}
+                <!-- Delete task action button form -->
+                <form method="POST" action="{% url 'tasks:delete_task' task.id %}" class="flex items-center shrink-0">
+                    {% csrf_token %}
+                    <!-- Premium red/rose trash button with smooth hover transition scaling -->
+                    <button type="submit" class="w-8 h-8 rounded-xl bg-rose-50 text-rose-500 hover:bg-rose-100 hover:text-rose-600 transition-all duration-200 flex items-center justify-center text-sm shadow-sm hover:scale-105" title="Delete Task">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                </form>
             </div>
             {% empty %}
             <!-- Beautiful fallback empty state when no tasks are passed in the context roster -->

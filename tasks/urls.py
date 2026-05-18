@@ -32,4 +32,8 @@ urlpatterns = [
     # This dynamic route handles toggling completion states back and forth.
     # When a user clicks our form checkbox, it triggers a POST call to /<id>/toggle/, flipping state!
     path('<int:pk>/toggle/', views.toggle_task, name='toggle_task'),
+
+    # This dynamic route handles deleting a task record permanently from our SQLite database drawer.
+    # When a user clicks the trash icon button, it triggers a secure POST call to /<id>/delete/, shredding the task!
+    path('<int:pk>/delete/', views.delete_task, name='delete_task'),
 ]
