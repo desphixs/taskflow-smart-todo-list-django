@@ -4,35 +4,24 @@ from django.shortcuts import render
 # That is why we quickly graduate to using the 'render' function, which loads a separate, clean HTML template.
 from django.http import HttpResponse
 
+# We import our Task database model class so we can fetch real tasks from the SQLite database.
+# The single dot '.' in '.models' tells Python to look in our current 'tasks' application folder!
+from .models import Task
+
 # Create your views here.
 # In Django, a "view" is just a standard Python function that takes a web request and returns a web response.
 # Think of a view function like a friendly restaurant chef: when a customer submits an order (a web request),
 # the chef prepares the meal (processes the request) and sends the finished plate back (the response)!
 def task_list(request):
-    # In a fully-fledged database application, we would retrieve tasks out of physical database tables.
-    # For now, we define a list of standard Python dictionaries representing our tasks.
-    # Think of this list like a physical clipboard list of paper sheets: each sheet (dictionary) has a
-    # task name ('title'), a marker checkmark ('completed') indicating if it's done or pending,
-    # and a label ('created_at') telling us when the task was added.
-    tasks = [
-        {
-            'title': 'Set up virtual environment and Django project',
-            'completed': True,
-            'created_at': 'just now'
-        },
-        {
-            'title': 'Build the tasks board view and templates',
-            'completed': False,
-            'created_at': 'today'
-        },
-        {
-            'title': 'Design sticky note task grid mockup',
-            'completed': True,
-            'created_at': 'yesterday'
-        },
-    ]
+    # Instead of using hardcoded mock lists (which act like writing fake menu items directly on a piece of paper),
+    # we now use Django's ORM (Object-Relational Mapper) to query our physical database!
+    # Think of 'Task.objects.all()' like telling a store manager: "Go over to our active database filing cabinet,
+    # open the drawer labeled 'Tasks', and fetch every single record folder sitting in there!"
+    # Since we configured the Meta class in models.py to sort by '-created_at', Django automatically organizes
+    # these records so the newest tasks are at the top of the pile!
+    tasks = Task.objects.all()
 
-    # We pack our list inside a central Python dictionary called 'context'.
+    # We pack our fetched database records list inside a central Python dictionary called 'context'.
     # Think of the context dictionary like a server carrying a covered tray of dishes to a dining table:
     # the tray (context) holds specific labels ('tasks') so the template knows exactly how to identify
     # the correct dish once the cover is lifted!
@@ -41,5 +30,5 @@ def task_list(request):
     }
 
     # The 'render' function takes the context dictionary as its third argument.
-    # This delivers our packed data straight to the templates/tasks/index.html file so it can be dynamically compiled!
+    # This delivers our packed database records straight to the templates/tasks/index.html file so it can be dynamically compiled!
     return render(request, 'tasks/index.html', context)
