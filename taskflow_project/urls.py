@@ -15,8 +15,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+# We import path from django.urls to define specific route URLs in our web application.
+# Think of 'path' like a signpost at a physical crossroad: it tells incoming visitors
+# exactly which street (URL path) leads to which building (view function)!
 from django.urls import path
 
+# The urlpatterns list holds all the active routes for our website.
+# Think of this list like a master directory at the entrance of a shopping mall.
+# It matches what the user typed in the browser's address bar to the correct department!
 urlpatterns = [
+    # This route maps the path 'admin/' to Django's built-in administrator site.
+    # When a user goes to http://127.0.0.1:8000/admin, this entry sends them to the admin portal.
     path('admin/', admin.site.urls),
 ]
+
